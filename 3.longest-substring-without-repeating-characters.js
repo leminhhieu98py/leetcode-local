@@ -59,18 +59,14 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-//   if (s.length === 0 || s.length === 1) return s.length;
-
   let maxLength = 0;
   let currentString = '';
   let count = 0;
 
   for (let i = 0; i < s.length; i++) {
-    // console.log('i', i)
     const char = s[i];
 
     currentString += char;
-    // console.log('72', currentString);
 
     if (currentString.includes(s[i + 1])) {
       if (currentString.length > maxLength) maxLength = currentString.length;
@@ -78,8 +74,6 @@ var lengthOfLongestSubstring = function (s) {
       currentString = '';
       i = ++count - 1;
     }
-
-    // console.log('81', currentString);
 
     if (i === s.length - 1 && currentString.length > maxLength) maxLength = currentString.length;
   }
