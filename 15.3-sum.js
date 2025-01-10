@@ -67,46 +67,37 @@
  */
 
 var threeSum = function (nums) {
-  const numsSort = nums.sort((a, b) => (a - b > 0 ? 1 : -1));
-  const tempResult = [];
+  nums.sort((a, b) => a - b); // Sort the array
+  const result = [];
 
-  for (let i = 1; i < numsSort.length; i++) {
-    let leftIndex = 0;
-    let left;
-    let current = numsSort[i];
-    let rightIndex = numsSort.length - 1;
-    let right;
+  for (let i = 0; i < nums.length - 2; i++) {
+    // Skip duplicates for the fixed number
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    while (leftIndex < i && i < rightIndex) {
-      left = numsSort[leftIndex];
-      right = numsSort[rightIndex];
+    let left = i + 1;
+    let right = nums.length - 1;
 
-      if (left + current + right > 0) {
-        rightIndex--;
-      } else if (left + current + right < 0) {
-        leftIndex++;
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
+
+      if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]]);
+
+        // Skip duplicates for the left and right pointers
+        while (left < right && nums[left] === nums[left + 1]) left++;
+        while (left < right && nums[right] === nums[right - 1]) right--;
+
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++; // Increase the sum
       } else {
-        tempResult.push([left, current, right]);
-        leftIndex++;
-        rightIndex--;
-
-        // Skip duplicates for the second and third numbers
-        while (leftIndex < rightIndex && nums[leftIndex] === nums[leftIndex + 1]) leftIndex++;
-        while (leftIndex < rightIndex && nums[rightIndex] === nums[rightIndex - 1]) rightIndex--;
+        right--; // Decrease the sum
       }
     }
   }
 
-  const jsonResult = tempResult.reduce((acc, curr) => {
-    const jsonValue = JSON.stringify(curr);
-    if (!acc.includes(jsonValue)) acc.push(jsonValue);
-
-    return acc;
-  }, []);
-
-  const result = jsonResult.map((item) => JSON.parse(item));
-
-  console.log(result);
+  console.log('result', result);
   return result;
 };
 // @lc code=end
