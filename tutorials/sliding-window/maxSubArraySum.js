@@ -14,7 +14,6 @@ const maxSubArraySum = (arr, num) => {
     if (temp > result) result = temp;
   }
 
-  console.log(result)
   return result;
 };
 
