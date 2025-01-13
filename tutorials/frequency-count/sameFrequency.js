@@ -1,8 +1,10 @@
 const sameFrequency = (num1, num2) => {
-  if (num1.length !== num2.length) return false;
+  const num1Str = num1.toString();
+  const num2Str = num2.toString();
+  if (num1Str.length !== num2Str.length) return false;
 
-  const num1InArr = num1.toString().split('');
-  const num2InArr = num2.toString().split('');
+  const num1InArr = num1Str.split('');
+  const num2InArr = num2Str.toString().split('');
 
   const num1InObj = {};
   const num2InObj = {};
