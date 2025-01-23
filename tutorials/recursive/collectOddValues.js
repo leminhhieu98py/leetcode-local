@@ -23,7 +23,7 @@ function collectOddValues(arr) {
 
     if (helperArr[0] % 2 === 1) result.push(helperArr[0]);
 
-    return helper(helperArr.slice(1));
+    helper(helperArr.slice(1));
   }
 
   helper(arr);
