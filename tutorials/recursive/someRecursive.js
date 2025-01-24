@@ -2,22 +2,13 @@
 const isOdd = (val) => val % 2 !== 0;
 
 function someRecursive(arr, cb) {
-  let result = false;
+  if (!arr.length) return false;
 
-  function isSome(inputArr) {
-    if (!inputArr.length) return;
-
-    if (cb(inputArr[0])) {
-      result = true;
-      return;
-    }
-
-    isSome(inputArr.slice(1));
+  if (cb(arr[0])) {
+    return true;
   }
 
-  isSome(arr);
-
-  return result;
+  return someRecursive(arr.slice(1), cb);
 }
 
 console.log(someRecursive([1, 2, 3, 4], isOdd)); // true
