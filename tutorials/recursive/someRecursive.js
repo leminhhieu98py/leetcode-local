@@ -4,7 +4,7 @@ const isOdd = (val) => val % 2 !== 0;
 function someRecursive(arr, cb) {
   let result = false;
 
-  function customIsEvery(inputArr) {
+  function isSome(inputArr) {
     if (!inputArr.length) return;
 
     if (cb(inputArr[0])) {
@@ -12,10 +12,10 @@ function someRecursive(arr, cb) {
       return;
     }
 
-    customIsEvery(inputArr.slice(1));
+    isSome(inputArr.slice(1));
   }
 
-  customIsEvery(arr);
+  isSome(arr);
 
   return result;
 }
