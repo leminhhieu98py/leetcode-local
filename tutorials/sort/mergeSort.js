@@ -1,4 +1,4 @@
-function merge(arr1, arr2) {
+function merge(arr1, arr2, comparator) {
   let i = 0;
   let j = 0;
 
@@ -17,12 +17,22 @@ function merge(arr1, arr2) {
       continue;
     }
 
-    if (arr1[i] <= arr2[j]) {
-      resultArr.push(arr1[i]);
-      i++;
+    if (typeof comparator === 'function') {
+      if (comparator(arr1[i], arr2[j]) < 0) {
+        resultArr.push(arr1[i]);
+        i++;
+      } else {
+        resultArr.push(arr2[j]);
+        j++;
+      }
     } else {
-      resultArr.push(arr2[j]);
-      j++;
+      if (arr1[i] <= arr2[j]) {
+        resultArr.push(arr1[i]);
+        i++;
+      } else {
+        resultArr.push(arr2[j]);
+        j++;
+      }
     }
   }
 
@@ -73,5 +83,14 @@ function mergeSort(arr = []) {
 
   return merge(leftArr, rightArr);
 }
+
+var names = ['Bob', 'Ethel', 'Christine'];
+var otherNames = ['M', 'Colt', 'Allison', 'SuperLongNameOMG'];
+
+function stringLengthComparator(str1, str2) {
+  return str1.length - str2.length;
+}
+
+merge(names, otherNames, stringLengthComparator);
 
 mergeSort([2, 4, 5, 8, 9, 9, 10, 1, 2, 2, 7]);
