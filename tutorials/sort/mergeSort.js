@@ -63,4 +63,15 @@ function mergeSort(arr) {
   return result[0];
 }
 
+// TODO: tutorial solution
+function mergeSort(arr = []) {
+  if (arr.length <= 1) return arr;
+
+  const midIndex = Math.floor(arr.length / 2);
+  const leftArr = mergeSort(arr.slice(0, midIndex));
+  const rightArr = mergeSort(arr.slice(midIndex));
+
+  return merge(leftArr, rightArr);
+}
+
 mergeSort([2, 4, 5, 8, 9, 9, 10, 1, 2, 2, 7]);
