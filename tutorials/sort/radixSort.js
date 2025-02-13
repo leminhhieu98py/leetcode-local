@@ -41,14 +41,14 @@ const radixSort = (numArr = []) => {
   return result;
 };
 
-// console.log(getDigit(123450, 0)); // 0
-// console.log(getDigit(123450, 1)); // 5
-// console.log(getDigit(123450, 2)); // 4
-// console.log(getDigit(123450, 3)); // 3
-// console.log(getDigit(123450, 4)); // 2
-// console.log(getDigit(123450, 9)); // 1
+console.log(getDigit(123450, 0)); // 0
+console.log(getDigit(123450, 1)); // 5
+console.log(getDigit(123450, 2)); // 4
+console.log(getDigit(123450, 3)); // 3
+console.log(getDigit(123450, 4)); // 2
+console.log(getDigit(123450, 9)); // 1
 
-// console.log(mostDigit([1234, 2, 5])); // 4
+console.log(mostDigit([1234, 2, 5])); // 4
 
 radixSort([8, 6, 1, 12]); // [1, 6, 8, 12]
 radixSort([10, 100, 1, 1000, 10000000]); // [1, 10, 100, 1000, 10000000]
