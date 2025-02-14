@@ -17,23 +17,33 @@ const mostDigit = (numArr = []) => {
 const radixSort = (numArr = []) => {
   if (numArr.length <= 1) return numArr;
 
-  let result = numArr.slice(0);
-  let buckets = Array.from({ length: 10 }, () => []);
-  let mostDigitNumber = mostDigit(numArr);
+  const negatives = numArr.filter((num) => num < 0);
+  const positives = numArr.filter((num) => num >= 0);
 
-  for (let count = 0; count < mostDigitNumber; count++) {
-    buckets = Array.from({ length: 10 }, () => []);
+  const radixHelper = (arr) => {
+    let result = [...arr];
+    const mostDigitNumber = mostDigit(arr);
 
-    for (let i = 0; i < result.length; i++) {
-      const digit = getDigit(result[i], count);
+    for (let count = 0; count < mostDigitNumber; count++) {
+      let buckets = Array.from({ length: 10 }, () => []);
 
-      buckets[digit].push(result[i]);
+      for (let i = 0; i < result.length; i++) {
+        const digit = getDigit(result[i], count);
+        buckets[digit].push(result[i]);
+      }
+
+      result = [].concat(...buckets);
     }
 
-    result = [].concat(...buckets);
-  }
+    return result;
+  };
 
-  return result;
+  const sortedPositives = radixHelper(positives);
+  const sortedNegatives = radixHelper(negatives.map(Math.abs))
+    .reverse()
+    .map((num) => -num);
+
+  return [...sortedNegatives, ...sortedPositives];
 };
 
 console.log(getDigit(123450, 0)); // 0
@@ -47,5 +57,5 @@ console.log(mostDigit([1234, 2, 5])); // 4
 
 radixSort([8, 6, 1, 12]); // [1, 6, 8, 12]
 radixSort([10, 100, 1, 1000, 10000000]); // [1, 10, 100, 1000, 10000000]
-radixSort([902, 4, 7, 408, 29, 9637, 1556, 3556, 8157, 4386, 86, 593]);
+radixSort([902, 4, 7, 408, 29, 9637, 1556, -3556, 8157, 4386, -86, 593]);
 // [4, 7, 29, 86, 408, 593, 902, 1556, 3556, 4386, 8157, 9637]
