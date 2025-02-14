@@ -30,12 +30,7 @@ const radixSort = (numArr = []) => {
       buckets[digit].push(result[i]);
     }
 
-    result = [];
-    buckets.forEach((bucket) =>
-      bucket.forEach((num) => {
-        result.push(num);
-      })
-    );
+    result = [].concat(...buckets);
   }
 
   return result;
