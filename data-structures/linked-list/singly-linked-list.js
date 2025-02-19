@@ -26,20 +26,45 @@ class SinglyLinkedList {
     this.tail.next = newNode;
     this.tail = newNode;
   }
+
+  pop() {
+    let current = this.head;
+    if (!current) return undefined;
+
+    let newTail = null;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    this.tail = newTail;
+    if (this.tail) this.tail.next = null;
+    this.length--;
+
+    if (!this.length) {
+      this.head = null;
+    }
+
+    return current;
+  }
 }
 
 const linkedList = new SinglyLinkedList();
 
-console.log(linkedList);
+// console.log(linkedList);
 
 linkedList.push('Hello');
-console.log(linkedList);
+// console.log(linkedList);
 
 linkedList.push('Otis');
-console.log(linkedList);
+// console.log(linkedList);
 
 linkedList.push('from');
-console.log(linkedList);
+// console.log(linkedList);
 
 linkedList.push('Naver');
-console.log(linkedList);
+// console.log(linkedList);
+
+linkedList.pop();
+// console.log(linkedList);
