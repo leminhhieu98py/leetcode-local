@@ -48,6 +48,8 @@ class SinglyLinkedList {
 
     return current;
   }
+
+  // TODO: shift method here
 }
 
 const linkedList = new SinglyLinkedList();
