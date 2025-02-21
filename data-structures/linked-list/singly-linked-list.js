@@ -49,7 +49,16 @@ class SinglyLinkedList {
     return current;
   }
 
-  // TODO: shift method here
+  shift() {
+    if (!this.head) return undefined;
+
+    const temp = this.head;
+    this.head = this.head.next;
+    this.length--;
+    if (!this.length) this.tail = null;
+
+    return temp;
+  }
 }
 
 const linkedList = new SinglyLinkedList();
@@ -69,4 +78,7 @@ linkedList.push('Naver');
 // console.log(linkedList);
 
 linkedList.pop();
+// console.log(linkedList);
+
+linkedList.shift();
 // console.log(linkedList);
