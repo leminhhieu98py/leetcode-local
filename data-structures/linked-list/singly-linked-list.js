@@ -59,6 +59,20 @@ class SinglyLinkedList {
 
     return temp;
   }
+
+  unshift(val) {
+    const newHead = new Node(val);
+    this.length++;
+
+    if (!this.head) {
+      this.head = newHead;
+      this.tail = this.head;
+      return;
+    }
+
+    newHead.next = this.head;
+    this.head = newHead;
+  }
 }
 
 const linkedList = new SinglyLinkedList();
@@ -77,8 +91,10 @@ linkedList.push('from');
 linkedList.push('Naver');
 // console.log(linkedList);
 
-linkedList.pop();
+// linkedList.pop();
 // console.log(linkedList);
 
-linkedList.shift();
+// linkedList.shift();
 // console.log(linkedList);
+
+linkedList.unshift(123);
