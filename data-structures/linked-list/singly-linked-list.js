@@ -52,6 +52,7 @@ class SinglyLinkedList {
   shift() {
     if (!this.head) return undefined;
 
+    // ?TODO
     const temp = this.head;
     this.head = this.head.next;
     this.length--;
