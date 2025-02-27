@@ -19,12 +19,12 @@ class SinglyLinkedList {
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
-
-      return;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
     }
 
-    this.tail.next = newNode;
-    this.tail = newNode;
+    return this;
   }
 
   pop() {
