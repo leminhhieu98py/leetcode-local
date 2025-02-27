@@ -99,9 +99,9 @@ class SinglyLinkedList {
   }
 
   insert(index, val) {
-    if (index === this.length - 1) return !!this.push(newNode);
+    if (index === this.length) return !!this.push(val);
 
-    if (index === 0) return !!this.unshift(newNode);
+    if (index === 0) return !!this.unshift(val);
 
     const newNode = new Node(val);
 
