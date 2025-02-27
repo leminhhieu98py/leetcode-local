@@ -154,7 +154,4 @@ class SinglyLinkedList {
 
 const linkedList = new SinglyLinkedList();
 
-linkedList.push('Hello');
-linkedList.push('Otis');
-linkedList.push('from');
-linkedList.push('Naver');
+linkedList.push('Hello').push('Otis').push('from').push('Naver');
