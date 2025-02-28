@@ -150,6 +150,39 @@ class SinglyLinkedList {
 
     return this;
   }
+
+  rotate(index) {
+    if (this.length <= 1) return this;
+    if (index <= 0 || index >= this.length || !Number.isInteger(index)) return false;
+
+    const start = this.get(index);
+
+    let next = this.head;
+
+    for (let i = 0; i < index; i++) {
+      if (i === index - 1) {
+        this.tail = next;
+        next.next = null;
+        break;
+      }
+
+      next = next.next;
+    }
+
+    let startTail = start;
+
+    let count = 0;
+
+    while (startTail.next !== null && count < 10) {
+      startTail = start.next;
+      count++;
+    }
+
+    startTail.next = this.head;
+    this.head = start;
+
+    return true;
+  }
 }
 
 const linkedList = new SinglyLinkedList();
