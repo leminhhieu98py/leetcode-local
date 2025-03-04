@@ -83,12 +83,26 @@ class DoublyLinkedList {
   }
 
   get(index) {
-    if (index < 0 || index >= this.length) return null;
+    if (index < 0 || index >= this.length || !Number.isInteger(index)) return null;
 
-    let current = this.head;
+    let current, count;
 
-    for (let i = 0; i < index; i++) {
-      current = current.next;
+    if (index < this.length / 2) {
+      current = this.head;
+      count = 0;
+
+      while (count !== index) {
+        current = current.next;
+        count++;
+      }
+    } else {
+      current = this.tail;
+      count = this.length - 1;
+
+      while (count !== index) {
+        current = current.prev;
+        count--;
+      }
     }
 
     return current;
