@@ -167,7 +167,28 @@ class DoublyLinkedList {
 
     return undefined;
   }
+
+  reverse() {
+    let current = this.tail;
+    let temp;
+    let newTail;
+
+    for (let i = 0; i < this.length; i++) {
+      if (i === this.length - 1) {
+        newTail = current;
+      }
+      temp = current.next;
+      current.next = current.prev;
+      current.prev = temp;
+      current = current.next;
+    }
+
+    this.head = this.tail;
+    this.tail = newTail;
+
+    return this;
+  }
 }
 
 const doublyLinkedList = new DoublyLinkedList();
-doublyLinkedList.push('Hello').push('Otis').push('from').push('Naver');
+doublyLinkedList.push(5).push(10).push(15).push(20);
