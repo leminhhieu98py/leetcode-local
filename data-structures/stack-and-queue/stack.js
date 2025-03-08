@@ -29,4 +29,20 @@ class Stack {
 
     return this;
   }
+
+  pop() {
+    if (!this.first) return null;
+
+    const removeNodeValue = this.first.value;
+
+    this.first = this.first.next;
+
+    if (!this.first) {
+      this.last = null;
+    }
+
+    this.size--;
+
+    return removeNodeValue;
+  }
 }
