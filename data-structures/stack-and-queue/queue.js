@@ -20,7 +20,7 @@ class Queue {
     if (!this.first) {
       this.first = newNode;
     } else {
-      this.first.next = newNode;
+      this.last.next = newNode;
     }
 
     this.last = newNode;
@@ -28,5 +28,19 @@ class Queue {
     this.size++;
 
     return this;
+  }
+
+  dequeue() {
+    if (!this.first) return null;
+
+    const removeNode = this.first;
+    this.first = this.first.next;
+
+    if (this.size === 1) {
+      this.last = null;
+    }
+
+    this.size--;
+    return removeNode.value;
   }
 }
