@@ -13,4 +13,20 @@ class Queue {
     this.last = null;
     this.size = 0;
   }
+
+  enqueue(val) {
+    const newNode = new Node(val);
+
+    if (!this.first) {
+      this.first = newNode;
+    } else {
+      this.first.next = newNode;
+    }
+
+    this.last = newNode;
+
+    this.size++;
+
+    return this;
+  }
 }
