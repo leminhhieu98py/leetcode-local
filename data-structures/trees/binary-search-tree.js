@@ -53,4 +53,21 @@ class BinarySearchTree {
 
     return current;
   }
+
+  remove(value) {
+    if (!this.root) return null;
+
+    let current = this.root;
+
+    // TODO: handle remove node later
+    // while (current) {
+    //   if (current.value === value) {
+    //     return current;
+    //   }
+
+    //   current = value > current.value ? current.right : current.left;
+    // }
+
+    return null;
+  }
 }
