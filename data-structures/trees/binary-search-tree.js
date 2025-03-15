@@ -59,7 +59,8 @@ class BinarySearchTree {
 
     let current = this.root;
 
-    // TODO: handle remove node later
+    // TODO: handle remove node later tomorrow
+
     // while (current) {
     //   if (current.value === value) {
     //     return current;
