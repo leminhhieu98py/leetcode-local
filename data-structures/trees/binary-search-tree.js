@@ -55,19 +55,21 @@ class BinarySearchTree {
   }
 
   remove(value) {
-    if (!this.root) return null;
+    const removedNode = this.find(value);
 
-    let current = this.root;
+    if (removedNode === null) return null;
 
-    // TODO: handle remove node later tomorrow
+    let right = removedNode.right;
 
-    // while (current) {
-    //   if (current.value === value) {
-    //     return current;
-    //   }
+    let count = 0;
 
-    //   current = value > current.value ? current.right : current.left;
-    // }
+    // if()
+
+    while (right?.right?.value !== null) {
+
+      left = left.right;
+      count++;
+    }
 
     return null;
   }
