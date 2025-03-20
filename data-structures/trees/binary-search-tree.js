@@ -58,49 +58,68 @@ class BinarySearchTree {
     if (!this.root) return null;
 
     let current = this.root;
-    let direction;
-    let removeNode;
+    let parent = null;
+    let direction = null;
 
-    while (current) {
-      if (current.right.value === value) {
-        removeNode = current.right;
-        direction = 'right';
-        break;
-      }
-
-      if (current.left.value === value) {
-        removeNode = current.left;
+    while (current && current.value !== value) {
+      parent = current;
+      if (value < current.value) {
         direction = 'left';
-        break;
+        current = current.left;
+      } else {
+        direction = 'right';
+        current = current.right;
       }
-
-      current = value > current.value ? current.right : current.left;
     }
 
-    // Case 1: Leaf
-    if (removeNode.left === null && removeNode.right === null) {
-      current[direction] = null;
+    if (!current) return null; // Node not found
+
+    let removeNode = current;
+
+    // Case 1: Node is a leaf
+    if (!removeNode.left && !removeNode.right) {
+      if (!parent) {
+        this.root = null; // The tree only had one node
+      } else {
+        parent[direction] = null;
+      }
       return removeNode;
     }
 
-    // Case 2: 1 child
-    if (removeNode.left === null) {
-      current[direction] = removeNode.right;
+    // Case 2: Node has one child
+    if (!removeNode.left) {
+      if (!parent) {
+        this.root = removeNode.right;
+      } else {
+        parent[direction] = removeNode.right;
+      }
       return removeNode;
     }
 
-    if (removeNode.right === null) {
-      current[direction] = removeNode.left;
+    if (!removeNode.right) {
+      if (!parent) {
+        this.root = removeNode.left;
+      } else {
+        parent[direction] = removeNode.left;
+      }
       return removeNode;
     }
 
-    // Case 3: 2 children
-    let removeNodeNext = removeNode.right;
-    let prevRemoveNodeNext = removeNode
+    // Case 3: Node has two children
+    let inOrderSuccessorParent = removeNode;
+    let inOrderSuccessor = removeNode.right;
 
-    while(removeNodeNext.left){
-        prevRemoveNodeNext = removeNodeNext.left
-        removeNodeNext = removeNodeNext
+    while (inOrderSuccessor.left) {
+      inOrderSuccessorParent = inOrderSuccessor;
+      inOrderSuccessor = inOrderSuccessor.left;
+    }
+
+    removeNode.value = inOrderSuccessor.value;
+
+    if (inOrderSuccessorParent === removeNode) {
+      inOrderSuccessorParent.right = inOrderSuccessor.right;
+    } else {
+      inOrderSuccessorParent.left = inOrderSuccessor.right;
     }
 
     return removeNode;
