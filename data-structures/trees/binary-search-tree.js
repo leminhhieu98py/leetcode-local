@@ -126,5 +126,12 @@ class BinarySearchTree {
   }
 
   // TODO: isBalanced BST
-  isBalanced() {}
+  isBalanced() {
+    if (!this.root) return false;
+
+    let leftDepth = 0;
+    let rightDepth = 0;
+
+    let leftBranch
+  }
 }
