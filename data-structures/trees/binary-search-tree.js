@@ -125,13 +125,24 @@ class BinarySearchTree {
     return removeNode;
   }
 
-  // TODO: isBalanced BST
+  getHeight(node) {
+    if (!node) return 0;
+
+    return Math.max(this.getHeight(node.left), this.getHeight(node.right)) + 1;
+  }
+
+  isBalancedHelper(node) {
+    if (!node) return true;
+
+    let leftHeight = this.getHeight(node.left);
+    let rightHeight = this.getHeight(node.right);
+
+    if (Math.abs(leftHeight - rightHeight) > 1) return false;
+
+    return this.isBalancedHelper(node.left) && this.isBalancedHelper(node.right);
+  }
+
   isBalanced() {
-    if (!this.root) return false;
-
-    let leftDepth = 0;
-    let rightDepth = 0;
-
-    let leftBranch
+    return this.isBalancedHelper(this.root);
   }
 }
