@@ -145,4 +145,37 @@ class BinarySearchTree {
   isBalanced() {
     return this.isBalancedHelper(this.root);
   }
+
+  findSecondLargest() {
+    if (!this.root || (!this.root.left && !this.root.right)) return undefined;
+
+    let current;
+
+    if (this.root.right) {
+      current = this.root.right;
+      let prev = this.root;
+
+      while (current.right) {
+        prev = current;
+        current = current.right;
+      }
+
+      if (!current.left) {
+        current = prev;
+      } else {
+        current = current.left;
+
+        while (current.right) {
+          current = current.right;
+        }
+      }
+    } else {
+      current = this.root.left;
+      while (current.right) {
+        current = current.right;
+      }
+    }
+
+    return current.value;
+  }
 }
