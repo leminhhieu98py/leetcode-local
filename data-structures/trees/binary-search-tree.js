@@ -178,4 +178,27 @@ class BinarySearchTree {
 
     return current.value;
   }
+
+  breadthFirstSearch() {
+    if (!this.root) return [];
+
+    let queue = [this.root];
+    let visited = [];
+
+    function breadthFirstHelper() {
+      if (!queue.length) return;
+
+      const node = queue.shift();
+      visited.push(node);
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+
+      breadthFirstHelper();
+    }
+
+    breadthFirstHelper();
+
+    return visited.map((item) => item.value);
+  }
 }
