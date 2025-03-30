@@ -201,4 +201,9 @@ class BinarySearchTree {
 
     return visited.map((item) => item.value);
   }
+
+  // TODO: Depth first search intro
+  // - Pre-order
+  // - Post-order
+  // - In-order
 }
