@@ -221,7 +221,25 @@ class BinarySearchTree {
     return visited;
   }
 
+  DFSPostOrder() {
+    if (!this.root) return [];
+
+    let visited = [];
+
+    function DFSPostOrderHelper(node) {
+      if (!node) return;
+
+      if (node.left) DFSPostOrderHelper(node.left);
+      if (node.right) DFSPostOrderHelper(node.right);
+
+      visited.push(node.value);
+    }
+
+    DFSPostOrderHelper(this.root);
+
+    return visited;
+  }
+
   // TODO: Depth first search intro
-  // - Post-order
   // - In-order
 }
