@@ -207,22 +207,21 @@ class BinarySearchTree {
 
     let visited = [];
 
-    function breadthFirstHelper(node) {
+    function DFSPreOrderHelper(node) {
       if (!node) return;
 
       visited.push(node.value);
 
-      breadthFirstHelper(node.left);
-      breadthFirstHelper(node.right);
+      DFSPreOrderHelper(node.left);
+      DFSPreOrderHelper(node.right);
     }
 
-    breadthFirstHelper(this.root);
+    DFSPreOrderHelper(this.root);
 
     return visited;
   }
 
   // TODO: Depth first search intro
-  // - Pre-order
   // - Post-order
   // - In-order
 }
