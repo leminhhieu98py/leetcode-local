@@ -240,6 +240,21 @@ class BinarySearchTree {
     return visited;
   }
 
-  // TODO: Depth first search intro
-  // - In-order
+  DFSInOrder() {
+    if (!this.root) return [];
+
+    let visited = [];
+
+    function DFSInOrderrHelper(node) {
+      if (!node) return;
+
+      if (node.left) DFSInOrderrHelper(node.left);
+      visited.push(node.value);
+      if (node.right) DFSInOrderrHelper(node.right);
+    }
+
+    DFSInOrderrHelper(this.root);
+
+    return visited;
+  }
 }
