@@ -19,4 +19,38 @@ class MaxBinaryHeap {
 
     return this.values;
   }
+
+  extractMax() {
+    let length = this.values.length;
+    if (!length) return undefined;
+    if (length === 1) return this.values.pop();
+
+    let replaceItemIndex = length - 1;
+    swap(this.values, 0, replaceItemIndex);
+
+    const returnVal = this.values.pop();
+    length = this.values.length;
+    replaceItemIndex = 0;
+
+    while (true) {
+      let leftChildIndex = replaceItemIndex * 2 + 1;
+      let rightChildIndex = replaceItemIndex * 2 + 2;
+      let largestIndex = replaceItemIndex;
+
+      if (leftChildIndex < length && this.values[largestIndex] < this.values[leftChildIndex]) {
+        largestIndex = leftChildIndex;
+      }
+
+      if (rightChildIndex < length && this.values[largestIndex] < this.values[rightChildIndex]) {
+        largestIndex = rightChildIndex;
+      }
+
+      if (largestIndex === replaceItemIndex) break;
+
+      swap(this.values, largestIndex, replaceItemIndex);
+      replaceItemIndex = largestIndex;
+    }
+
+    return returnVal;
+  }
 }
