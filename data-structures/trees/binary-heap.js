@@ -1,21 +1,22 @@
-class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
+const swap = (arr, idx1, idx2) => ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
 
-class BinaryHeap {
+class MaxBinaryHeap {
   constructor() {
-    this.root = null;
+    this.values = [];
   }
 
   insert(value) {
-    const node = new Node(value);
+    this.values.push(value);
 
-    if (!this.root) this.root = node;
+    let newItemIndex = this.values.length - 1;
+    let parentIndex = Math.floor((newItemIndex - 1) / 2);
 
-    // TODO: need brainstorm about the heap storing here for max and min binary heap
+    while (parentIndex >= 0 && this.values[parentIndex] < this.values[newItemIndex]) {
+      swap(this.values, parentIndex, newItemIndex);
+      newItemIndex = parentIndex;
+      parentIndex = Math.floor((newItemIndex - 1) / 2);
+    }
+
+    return this.values;
   }
 }
